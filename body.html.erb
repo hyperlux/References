@@ -1,0 +1,85 @@
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="path_to_logo.png" alt="Auroville Community Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#"><i class="icon-dashboard"></i> Dashboard</a></li>
+                <li><a href="#"><i class="icon-home"></i> Homepage</a></li>
+                <li><a href="#"><i class="icon-announcement"></i> Announcements</a></li>
+                <li><a href="#"><i class="icon-event"></i> Events</a></li>
+                <li><a href="#"><i class="icon-forum"></i> Forums</a></li>
+                <li><a href="#"><i class="icon-social"></i> Social</a></li>
+                <li><a href="#"><i class="icon-directory"></i> Directory</a></li>
+                <li><a href="#"><i class="icon-references"></i> References</a></li>
+                <li><a href="#"><i class="icon-help"></i> Help Center</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="search-bar">
+                <input type="text" placeholder="Search everything...">
+            </div>
+            <div class="user-menu">
+                <img src="path_to_user_avatar.jpg" alt="User Avatar">
+                <span>Anonymous Admin</span>
+            </div>
+        </div>
+        <div class="dashboard-grid">
+            <div class="welcome-banner">
+                <p>Welcome on the new Auroville Community platform! We hope this can become a space for true connection, in a spirit of respect and mutuality.</p>
+                <a href="/learn-more" class="btn-learn-more">Learn more</a>
+            </div>
+            <section class="latest-announcements section-box">
+                <h2>Latest Announcements</h2>
+                <div id="announcements-content">
+                    <% topic_list(list_opts: { category: 5, per_page: 5 }, opts: { instance_var: "auroville_topics" }) %>
+
+                    <% if @auroville_topics.present? %>
+                        <% @auroville_topics.each do |topic| %>
+                            <div class="topic-item">
+                                <img src="<%= topic.user.avatar_template.gsub('{size}', '40') %>" alt="User Avatar">
+                                <div class="content">
+                                    <h3><a href="<%= topic.url %>" target="_blank"><%= emoji_codes_to_img(topic.fancy_title) %></a></h3>
+                                    <p><%= short_date(topic.created_at) %> • <%= topic.reply_count %> replies</p>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% else %>
+                        <p>No recent announcements found.</p>
+                    <% end %>
+                </div>
+            </section>
+            <section class="quote section-box">
+                <h2>"All's miracle and can by miracle change."</h2>
+                <p>BOOK I, CANTO II</p>
+            </section>
+            <section class="featured-video section-box">
+                <h2>Featured Video</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/Kqz56TrKDRk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </section>
+            <section class="whos-online section-box">
+                <h2>Who's Online</h2>
+                <!-- Add online users here -->
+            </section>
+            <section class="recent-topics section-box">
+                <h2>Recent Topics</h2>
+                <!-- Add recent topics here -->
+            </section>
+            <section class="forum-statistics section-box">
+                <h2>Forum Statistics</h2>
+                <!-- Add forum statistics here -->
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Add any JavaScript functionality here
+    </script>
+</body>
+</html>
